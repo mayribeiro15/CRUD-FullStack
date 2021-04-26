@@ -1,7 +1,9 @@
 import './App.css';
 import Header from './Header';
-import Home from './Home';
-import Produtos from './Produtos';
+import Home from './Pages/Home';
+import Produtos from './Pages/Produtos';
+import Estoque from './Pages/Estoque';
+import Listagem from './Pages/Listagem';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 
 function App() {
@@ -10,10 +12,10 @@ function App() {
       <Header />
       <BrowserRouter>
         <Switch>
-          <Route exact from="/" render={props => <Home {...props}/>}/>
-          <Route exact from="/produtos" render={props => <Produtos {...props}/>}/>
-          <Route exact from="/estoque" render={props => <Home {...props}/>}/>
-          <Route exact from="/listagem" render={props => <Home {...props}/>}/>
+          <Route path="/" exact component={Home}/>
+          <Route path="/produtos" exact component={Produtos}/>
+          <Route path="/estoque" exact component={Estoque}/>
+          <Route path="/listagem" exact component={Listagem}/>
         </Switch>
       </BrowserRouter>
     </div>

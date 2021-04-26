@@ -16,6 +16,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import HomeIcon from '@material-ui/icons/Home';
+import {BrowserRouter, Link} from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -127,27 +128,33 @@ function Header() {
           </IconButton>
         </div>
         <Divider />
+        <BrowserRouter>
         <List>
-          {<ListItem button onClick={handleDrawerClose}>
+          {<Link to='/' style={{ textDecoration: 'none', color: 'black'  }}>
+            <li><ListItem button>
             <ListItemIcon>{<HomeIcon />}</ListItemIcon>
             <ListItemText>Home</ListItemText>
-          </ListItem>}
+          </ListItem></li></Link>}
         </List>
         <Divider />
         <List>
-          {<ListItem button onClick={handleDrawerClose}>
-            <ListItemIcon>{<ChevronRightIcon />}</ListItemIcon>
+          {<Link to='/produtos' style={{ textDecoration: 'none', color: 'black' }}>
+            <li><ListItem button onClick={handleDrawerClose}>
+            <ListItemIcon>{<ChevronRightIcon/>}</ListItemIcon>
             <ListItemText>Produtos</ListItemText>
-          </ListItem>}
-          {<ListItem button onClick={handleDrawerClose}>
-            <ListItemIcon>{<ChevronRightIcon />}</ListItemIcon>
+          </ListItem></li></Link>}
+          {<Link to='/estoque' style={{ textDecoration: 'none', color: 'black'  }}>
+            <li><ListItem button>
+            <ListItemIcon>{<ChevronRightIcon/>}</ListItemIcon>
             <ListItemText>Estoque</ListItemText>
-          </ListItem>}
-          {<ListItem button onClick={handleDrawerClose}>
-            <ListItemIcon>{<ChevronRightIcon />}</ListItemIcon>
-            <ListItemText>Listagens</ListItemText>
-          </ListItem>}
+          </ListItem></li></Link>}
+          {<Link to='/listagem' style={{ textDecoration: 'none', color: 'black'  }}>
+            <li><ListItem button>
+            <ListItemIcon>{<ChevronRightIcon/>}</ListItemIcon>
+            <ListItemText>Listagem</ListItemText>
+          </ListItem></li></Link>}
         </List>
+        </BrowserRouter>
       </Drawer>
       <main
         className={clsx(classes.content, {

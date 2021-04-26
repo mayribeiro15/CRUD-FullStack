@@ -75,7 +75,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function HeaderDrawer() {
+function Header() {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -128,21 +128,25 @@ export default function HeaderDrawer() {
         </div>
         <Divider />
         <List>
-          {['HomePage'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{<HomeIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
+          {<ListItem button onClick={handleDrawerClose}>
+            <ListItemIcon>{<HomeIcon />}</ListItemIcon>
+            <ListItemText>Home</ListItemText>
+          </ListItem>}
         </List>
         <Divider />
         <List>
-          {['Gestão de Produtos', 'Gestão de Estoque', 'Listagem'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{<ChevronRightIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
+          {<ListItem button onClick={handleDrawerClose}>
+            <ListItemIcon>{<ChevronRightIcon />}</ListItemIcon>
+            <ListItemText>Produtos</ListItemText>
+          </ListItem>}
+          {<ListItem button onClick={handleDrawerClose}>
+            <ListItemIcon>{<ChevronRightIcon />}</ListItemIcon>
+            <ListItemText>Estoque</ListItemText>
+          </ListItem>}
+          {<ListItem button onClick={handleDrawerClose}>
+            <ListItemIcon>{<ChevronRightIcon />}</ListItemIcon>
+            <ListItemText>Listagens</ListItemText>
+          </ListItem>}
         </List>
       </Drawer>
       <main
@@ -151,19 +155,9 @@ export default function HeaderDrawer() {
         })}
       >
         <div className={classes.drawerHeader} />
-        <Typography paragraph>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent elementum
-          facilisis leo vel. Risus at ultrices mi tempus imperdiet. Semper risus in hendrerit
-          gravida rutrum quisque non tellus. Convallis convallis tellus id interdum velit laoreet id
-          donec ultrices. Odio morbi quis commodo odio aenean sed adipiscing. Amet nisl suscipit
-          adipiscing bibendum est ultricies integer quis. Cursus euismod quis viverra nibh cras.
-          Metus vulputate eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo quis
-          imperdiet massa tincidunt. Cras tincidunt lobortis feugiat vivamus at augue. At augue eget
-          arcu dictum varius duis at consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem
-          donec massa sapien faucibus et molestie ac
-        </Typography>
       </main>
     </div>
   );
 }
+
+export default Header;

@@ -16,7 +16,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import HomeIcon from '@material-ui/icons/Home';
-import {BrowserRouter, Link} from 'react-router-dom';
+import {Link, withRouter} from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -128,10 +128,9 @@ function Header() {
           </IconButton>
         </div>
         <Divider />
-        <BrowserRouter>
         <List>
           {<Link to='/' style={{ textDecoration: 'none', color: 'black'  }}>
-            <li><ListItem button>
+            <li><ListItem button onClick={handleDrawerClose}>
             <ListItemIcon>{<HomeIcon />}</ListItemIcon>
             <ListItemText>Home</ListItemText>
           </ListItem></li></Link>}
@@ -144,17 +143,16 @@ function Header() {
             <ListItemText>Produtos</ListItemText>
           </ListItem></li></Link>}
           {<Link to='/estoque' style={{ textDecoration: 'none', color: 'black'  }}>
-            <li><ListItem button>
+            <li><ListItem button onClick={handleDrawerClose}>
             <ListItemIcon>{<ChevronRightIcon/>}</ListItemIcon>
             <ListItemText>Estoque</ListItemText>
           </ListItem></li></Link>}
           {<Link to='/listagem' style={{ textDecoration: 'none', color: 'black'  }}>
-            <li><ListItem button>
+            <li><ListItem button onClick={handleDrawerClose}>
             <ListItemIcon>{<ChevronRightIcon/>}</ListItemIcon>
             <ListItemText>Listagem</ListItemText>
           </ListItem></li></Link>}
         </List>
-        </BrowserRouter>
       </Drawer>
       <main
         className={clsx(classes.content, {
@@ -167,4 +165,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default withRouter(Header);

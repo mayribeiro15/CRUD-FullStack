@@ -1,9 +1,9 @@
 import './App.css';
 import Header from './Header';
-import Home from './Pages/Home';
-import Produtos from './Pages/Produtos';
-import Estoque from './Pages/Estoque';
-import Listagem from './Pages/Listagem';
+import Home from './pages/Home';
+import Produtos from './pages/Produtos';
+import Estoque from './pages/Estoque';
+import Listagem from './pages/Listagem';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 
 function App() {

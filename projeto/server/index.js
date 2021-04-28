@@ -3,9 +3,11 @@ import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import produtosRoutes from './routes/produtos.js';
+import estoquesRoutes from './routes/estoques.js';
 const app = express();
 
 app.use('/produtos', produtosRoutes);
+app.use('/estoques', estoquesRoutes);
 
 app.use(bodyParser.json({limit: "20mb", extended:true}));
 app.use(bodyParser.urlencoded({limit: "20mb", extended:true}));

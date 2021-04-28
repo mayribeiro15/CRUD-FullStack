@@ -2,13 +2,12 @@ import mongoose from 'mongoose';
 
 const produtosSchema = mongoose.Schema({
     codProduto: Number,
-    Produto: String,
+    nomeProduto: String,
     section: {
         type: String,
         default: 'Vazio'
     },
     codEstoque: [Number],
-    Estoque: [String],
     Unidades: [Number]
 });
 

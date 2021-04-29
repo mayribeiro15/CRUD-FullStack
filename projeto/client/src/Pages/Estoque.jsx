@@ -31,12 +31,12 @@ function Estoques() {
       <p>Nesta página é possível criar/deletar estoques e editar informações 
       <br/>de estoques pré existentes.</p>
       <Grid container spacing={3}>
-        <Grid item xs={5}>
+        <Grid item xs={4}>
           <AppBar className={classes.appBar} position="static" color="inherit">
             <CreateEstoque/>
           </AppBar>
         </Grid>
-        <Grid item xs={7}>
+        <Grid item xs={8}>
           <AppBar className={classes.appBar} position="static" color="inherit">
             <ShowEstoque/>
           </AppBar>

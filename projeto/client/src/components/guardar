@@ -1,0 +1,27 @@
+const [estoque, setEstoque] = useState({
+    codEstoque: 0,
+    nomeEstoque: '',
+    numProdutos: 0,
+    numItens: 0
+  });
+
+  const createEstoque = () => {
+    axios.post('http://localhost:3001/estoques', estoque)
+    window.location.reload(false);
+  }
+
+
+
+  form className={classes.root} noValidate autoComplete="off">
+      <TextField id="standard-basic" label="Cód. Estoque" value={estoque.codEstoque} onChange={(event) => {
+        setEstoque({ ...estoque, codEstoque: event.target.value})
+      }} />
+      <TextField id="standard-basic" label="Nome Estoque" value={estoque.nomeEstoque} onChange={(event) => {
+        setEstoque({ ...estoque, nomeEstoque: event.target.value})
+      }} />
+      <TextField id="standard-basic" label="Num Produtos" value={estoque.numProdutos} onChange={(event) => {
+        setEstoque({ ...estoque, numProdutos: event.target.value})
+      }} />
+      <TextField id="standard-basic" label="Num Itens" value={estoque.numItens} onChange={(event) => {
+        setEstoque({ ...estoque, numItens: event.target.value})
+      }} />

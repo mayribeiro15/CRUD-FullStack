@@ -2,11 +2,9 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import cors from 'cors';
-import produtosRoutes from './routes/produtos.js';
-import estoquesRoutes from './routes/estoques.js';
+import estoquesRoutes from './routes/estoque.js';
 const app = express();
 
-app.use('/produtos', produtosRoutes);
 app.use('/estoques', estoquesRoutes);
 
 app.use(bodyParser.json({limit: "20mb", extended:true}));
@@ -14,11 +12,11 @@ app.use(bodyParser.urlencoded({limit: "20mb", extended:true}));
 
 app.use(cors());
 
-const CONNECTION_URL = 'mongodb+srv://user:password4321@cluster0.mhvcp.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+const CONNECTION_URL = 'mongodb+srv://user-1:password-1@estoque.xx8yx.mongodb.net/Sistema?retryWrites=true&w=majority';
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3001;
 
-mongoose.connect(CONNECTION_URL,{
+mongoose.connect(CONNECTION_URL, {
     useNewUrlParser:true, useUnifiedTopology:true
 }).then(() => app.listen(PORT, () =>
 console.log(`Connection is established and running on port: ${PORT}`)

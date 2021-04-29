@@ -9,6 +9,7 @@ app.use('/estoques', estoquesRoutes);
 
 app.use(bodyParser.json({limit: "20mb", extended:true}));
 app.use(bodyParser.urlencoded({limit: "20mb", extended:true}));
+app.use(express.json());
 
 app.use(cors());
 

@@ -7,24 +7,40 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import axios from 'axios';
+import api from '../services/api';
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 const useStyles = makeStyles({
   table: {
-    minWidth: 100,
+    minWidth: 50,
   },
 });
 
 export default function ShowEstoque() {
   const classes = useStyles();
 
-  const [estoquesList, setEstoquesList] = useState([])
+  async function deleteEstoque(id){
+    if(window.confirm('Apagar o estoque?')){
+      var response = await api.delete('/api/estoques/'+id);
+      if(response.status===200){
+        alert('Estoque deletado com sucesso.');
+        window.location.href='/estoque';
+      }else{
+        alert('Falha ao deletar o estoque.');
+      }
+    }
+  }
 
   useEffect(() => {
-    axios.get('http://localhost:5000/estoques').then( (allEstoque) => {
-      setEstoquesList(allEstoque.data);
-    })
+    async function showEstoque(){
+      const response = await api.get("/api/estoques");
+      setEstoquesList(response.data);
+    }
+    showEstoque();
   }, [])
+
+  const [estoquesList, setEstoquesList] = useState([])
 
   return (
     <>
@@ -35,17 +51,22 @@ export default function ShowEstoque() {
           <TableRow>
             <TableCell align="right"><b>Cod</b></TableCell>
             <TableCell align="left"><b>Estoque</b></TableCell>
-            <TableCell align="right"><b>Produtos</b></TableCell>
-            <TableCell align="right"><b>Itens</b></TableCell>
+            <TableCell align="center"><b>Produtos</b></TableCell>
+            <TableCell align="center"><b>Itens</b></TableCell>
+            <TableCell align="center"><b>Deletar</b></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {estoquesList.map((estoque, key) => (
             <TableRow key={key}>
-              <TableCell align="right">{estoque.codEstoque}</TableCell>
-              <TableCell align="left">{estoque.nomeEstoque}</TableCell>
-              <TableCell align="right">{estoque.numProdutos}</TableCell>
-              <TableCell align="right">{estoque.unidProdutos}</TableCell>
+              <TableCell align="right" style={{ width: "10%" }}>{estoque.codEstoque}</TableCell>
+              <TableCell align="left" style={{ width: "50%" }}>{estoque.nomeEstoque}</TableCell>
+              <TableCell align="center" style={{ width: "10%" }}>{estoque.numProdutos}</TableCell>
+              <TableCell align="center" style={{ width: "10%" }}>{estoque.numItens}</TableCell>
+              <TableCell align="center" style={{ width: "10%"}}> 
+                <IconButton aria-label="delete" className={classes.margin} onClick={() => deleteEstoque(estoque._id)}>
+                <DeleteIcon fontSize="small" /></IconButton>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>

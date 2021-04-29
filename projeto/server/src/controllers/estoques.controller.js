@@ -17,4 +17,14 @@ module.exports = {
             return res.status(500).json(estoque);
         }
     },
+    async info(req,res){
+        const { _id } = req.params;
+        const estoque = await Estoque.findOne({_id});
+        res.json(estoque);
+    },
+    async delete(req,res){
+        const { _id } = req.params;
+        const estoque = await Estoque.findByIdAndDelete({_id});
+        return res.json(estoque);
+    }
 }

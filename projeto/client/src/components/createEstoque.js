@@ -6,8 +6,12 @@ import api from '../services/api';
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    fontSize: 10,
     '& > *': {
-      margin: theme.spacing(1),
+      marginTop: theme.spacing(0),
+      marginBottom: theme.spacing(3),
+      marginRight: theme.spacing(1),
+      marginLeft: theme.spacing(1),
       width: '25ch',
     },
   },
@@ -15,13 +19,16 @@ const useStyles = makeStyles((theme) => ({
 
 export default function CreateEstoque() {
   const classes = useStyles();
-
   async function createEstoque(){
-    const response = await api.post('/api/estoques',estoque);
-    if(response.status==200){
-      window.location.href='/estoque'
+    if(estoque.nomeEstoque===''||estoque.codEstoque===''){
+      alert('Preencha todos os dados!');
     }else{
-      alert('Erro ao cadastrar novo estoque!');
+      const response = await api.post('/api/estoques',estoque);
+      if(response.status===200){
+        window.location.href='/estoque';
+      }else{
+        alert('Erro ao cadastrar novo estoque!');
+      }
     }
   }
 
@@ -36,13 +43,13 @@ export default function CreateEstoque() {
     <>
     <h3>Cadastrar Novo Estoque</h3>
     <form className={classes.root} noValidate autoComplete="off">
-      <TextField label="Código do Estoque" id="standard-size-small" size="small" value={estoque.codEstoque} onChange={(event) => {
+      <TextField style={{ width: "20ch"}}  label="Código" id="standard-size-small" value={estoque.codEstoque} onChange={(event) => {
         setEstoque({ ...estoque, codEstoque: event.target.value})
       }} />
-      <TextField label="Nome do Estoque" id="standard-size-small" size="small" value={estoque.nomeEstoque} onChange={(event) => {
+      <TextField style={{ width: "30ch"}}  label="Nome do Estoque" id="standard-size-small" value={estoque.nomeEstoque} onChange={(event) => {
         setEstoque({ ...estoque, nomeEstoque: event.target.value})
       }} />
-      <Button variant="contained" onClick={createEstoque} >
+      <Button style={{ width: "20ch"}} variant="contained" onClick={createEstoque} >
         CRIAR ESTOQUE
       </Button>
     </form>

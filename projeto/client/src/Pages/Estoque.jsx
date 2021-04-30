@@ -27,7 +27,7 @@ function Estoques() {
 
   return (
     <div className={classes.root}>
-      <h2>Bem vindo a aba de Estoque.</h2>
+      <h2>Bem vindo a aba de Estoque!</h2>
       <p>Nesta página é possível criar e deletar estoques e visualizar informações 
       <br/>sobre a quantidades de tipos de produtos e o total de itens em cada estoque.</p>
       <Grid container spacing={3}>

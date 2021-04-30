@@ -31,18 +31,11 @@ function Produtos() {
       <p>Nesta página é possível criar e deletar produtos e visualizar informações 
       <br/>sobre o total armazenado e a quantidade de estoques envolvidos.
       <br/>Além disso, é possível editar as quantidades e estoques de cada produto.</p>
-      <Grid container spacing={3}>
-        <Grid item xs={4}>
-          <AppBar className={classes.appBar} position="static" color="inherit">
-            <CreateProduto/>
-          </AppBar>
-        </Grid>
-        <Grid item xs={8}>
+        <Grid item xs={12}>
           <AppBar className={classes.appBar} position="static" color="inherit">
             <ShowProduto/>
           </AppBar>
         </Grid>
-      </Grid>
     </div>
   );
 }

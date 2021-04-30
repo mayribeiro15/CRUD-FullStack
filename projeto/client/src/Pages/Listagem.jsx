@@ -27,7 +27,10 @@ const rows = [
 export default function DataGridDemo() {
   return (
     <div style={{ height: 400, width: '80%', marginLeft: '10%'}}>
-      <h2>Listagem de Produtos no Estoque</h2>
+      <h2>Listagem de Produtos e Estoques</h2>
+      <p>Nesta página é possível visualizar os produtos em cada estoque específico.
+      <br/>Existem opções de classificação e filtro para cada coluna de dados.
+      <br/>Além disso, é possível deletar produtos no estoque.</p>
       <DataGrid rows={rows} columns={columns} pageSize={5} checkboxSelection />
     </div>
   );

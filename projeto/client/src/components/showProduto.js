@@ -66,7 +66,7 @@ export default function ShowProduto() {
               <TableCell align="center" style={{ width: "10%" }}>{produto.numEstoques}</TableCell>
               <TableCell align="center" style={{ width: "10%" }}>{produto.numItensTotal}</TableCell>
               <TableCell align="center" style={{ width: "10%"}}> 
-                <IconButton aria-label="delete" className={classes.margin}>
+                <IconButton aria-label="delete" className={classes.margin} href={'/produtos/alterar/'+produto._id}>
                 <CreateIcon fontSize="small" /></IconButton>
               </TableCell>
               <TableCell align="center" style={{ width: "10%"}}> 

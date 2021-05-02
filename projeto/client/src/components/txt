@@ -1,0 +1,6 @@
+<FormControl className={classes.textField} style={{ width: "20ch"}}><InputLabel>NºEstoques</InputLabel>
+          <Select defaultValue={1} value={produto.numEstoques} onChange={(event) => {
+            setProduto({ ...produto, numEstoques: event.target.value})}}>
+            <MenuItem value={1}>1</MenuItem>
+          </Select>
+        </FormControl>

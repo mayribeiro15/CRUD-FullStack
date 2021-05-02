@@ -33,10 +33,8 @@ export default function CreateEstoque() {
   }
 
   const [estoque, setEstoque] = useState({
-    codEstoque: '',
-    nomeEstoque: '',
-    numProdutos: 0,
-    numItens: 0
+    codEstoque: ' ',
+    nomeEstoque: ' '
   })
 
   return (

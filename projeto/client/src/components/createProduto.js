@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import api from '../services/api';
+import MenuItem from '@material-ui/core/MenuItem';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -13,12 +14,14 @@ const useStyles = makeStyles((theme) => ({
       marginRight: theme.spacing(1),
       marginLeft: theme.spacing(1),
       width: '25ch',
+      textAlign: 'left',
     },
   },
 }));
 
 export default function CreateProduto() {
   const classes = useStyles();
+  
   async function createProduto(){
     if(produto.nomeProduto===''||produto.codProduto===''){
       alert('Preencha todos os dados!');
@@ -33,26 +36,49 @@ export default function CreateProduto() {
   }
 
   const [produto, setProduto] = useState({
-    nomeProduto: '',
-    codProduto: '',
-    numEstoques: 0,
-    numItensTotal: 0,
-    codsEstoque: [],
-    numItens: []
+    nomeProduto: ' ',
+    codProduto: ' ',
+    numEstoques: ' ',
+    codsEstoque: ' ',
+    numItens: ' '
   })
+
+  useEffect(() => {
+    async function showEstoque(){
+      const response = await api.get("/api/estoques");
+      setEstoquesList(response.data);
+    }
+    showEstoque();
+  }, [])
+
+  const [estoquesList, setEstoquesList] = useState([])
 
   return (
     <>
     <h3>Cadastrar Novo Produto</h3>
     <form className={classes.root} noValidate autoComplete="off">
-      <TextField style={{ width: "20ch"}}  label="Código" id="standard-size-small" value={produto.codProduto} onChange={(event) => {
+      <TextField style={{ width: "10ch"}}  label="Código" id="standard-size-small" value={produto.codProduto} onChange={(event) => {
         setProduto({ ...produto, codProduto: event.target.value})
       }} />
-      <TextField style={{ width: "30ch"}}  label="Nome do Produto" id="standard-size-small" value={produto.nomeProduto} onChange={(event) => {
+      <TextField style={{ width: "25ch"}}  label="Nome do Produto" id="standard-size-small" value={produto.nomeProduto} onChange={(event) => {
         setProduto({ ...produto, nomeProduto: event.target.value})
       }} />
-      <p style={{ fontSize: 12, width: "50ch"}}>Para adicionar itens ao estoque, <br/>edite o produto após criar.</p>
-      <Button style={{ width: "20ch"}} variant="contained" onClick={createProduto} >
+      <TextField select style={{ width: "15ch"}}  label="NºEstoques" id="standard-size-small" value={produto.numEstoques} onChange={(event) => {
+        setProduto({ ...produto, numEstoques: event.target.value})
+      }}>
+          <MenuItem value={1}>1</MenuItem>
+      </TextField>
+      <TextField select style={{ width: "37ch"}}  label="Estoque" id="standard-size-small" value={produto.codsEstoque} onChange={(event) => {
+        setProduto({ ...produto, codsEstoque: event.target.value})
+      }}>
+          {estoquesList.map((estoque, key) => (
+          <MenuItem value={estoque._id}>{estoque.codEstoque} - {estoque.nomeEstoque}</MenuItem>
+          ))}
+      </TextField>
+      <TextField style={{ width: "15ch"}}  label="Quantidade" id="standard-size-small" value={produto.numItens} onChange={(event) => {
+        setProduto({ ...produto, numItens: event.target.value})
+      }} />
+      <Button style={{ width: "20ch"}} variant="contained" onClick={createProduto}>
         CRIAR PRODUTO
       </Button>
     </form>

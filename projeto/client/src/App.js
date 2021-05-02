@@ -3,6 +3,7 @@ import Header from './Header';
 import Home from './pages/Home';
 import Produtos from './pages/Produtos';
 import ProdutosAlterar from './pages/ProdutosAlterar';
+import EstoquesAlterar from './pages/EstoquesAlterar';
 import Estoque from './pages/Estoque';
 import Listagem from './pages/Listagem';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
@@ -17,6 +18,7 @@ function App() {
           <Route path="/produtos" exact component={Produtos}/>
           <Route path="/produtos/alterar/:idProduto" exact component={ProdutosAlterar}/>
           <Route path="/estoque" exact component={Estoque}/>
+          <Route path="/estoques/alterar/:idEstoque" exact component={EstoquesAlterar}/>
           <Route path="/listagem" exact component={Listagem}/>
         </Switch>
       </BrowserRouter>

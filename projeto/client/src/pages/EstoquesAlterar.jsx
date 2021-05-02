@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import AppBar from '@material-ui/core/AppBar';
-import ShowListagem from '../components/showListagem.js';
+import UpdateEstoque from '../components/updateEstoque.js';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,18 +21,17 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function DataGridDemo() {
+function EstoquesAlterar() {
   const classes = useStyles();
   return (
-    <div style={{ height: 400, width: '80%', marginLeft: '10%'}}>
-      <h2>Listagem de Produtos e Estoques</h2>
-      <p>Nesta página é possível visualizar os produtos em cada estoque específico,
-      <br/>com opção de deleção de cada item.</p>
-      <Grid item xs={12}>
+    <div className={classes.root}>
+        <Grid item xs={12}>
           <AppBar className={classes.appBar} position="static" color="inherit">
-            <ShowListagem/>
+            <UpdateEstoque/>
           </AppBar>
-      </Grid>
+        </Grid>
     </div>
   );
 }
+
+export default EstoquesAlterar;

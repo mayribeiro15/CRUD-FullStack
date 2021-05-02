@@ -10,6 +10,7 @@ routes.get('/api/estoques', Estoque.list);
 routes.post('/api/estoques', Estoque.create);
 routes.get('/api/estoques.info/:_id', Estoque.info);
 routes.delete('/api/estoques/:_id', Estoque.delete);
+routes.put('/api/estoques', Estoque.update);
 
 //Rotas de Produto
 routes.get('/api/produtos', Produto.list);

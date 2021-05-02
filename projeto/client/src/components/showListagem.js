@@ -10,7 +10,6 @@ import Paper from '@material-ui/core/Paper';
 import api from '../services/api';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
-import CreateIcon from '@material-ui/icons/Create';
 
 const useStyles = makeStyles({
   table: {
@@ -18,55 +17,55 @@ const useStyles = makeStyles({
   },
 });
 
-export default function ShowEstoque() {
+export default function ShowProduto() {
   const classes = useStyles();
 
-  async function deleteEstoque(id){
-    if(window.confirm('Apagar o estoque?')){
-      var response = await api.delete('/api/estoques/'+id);
+  async function deleteProduto(id){
+    if(window.confirm('Deseja apagar o produto?')){
+      var response = await api.delete('/api/produtos/'+id);
       if(response.status===200){
-        alert('Estoque deletado com sucesso.');
-        window.location.href='/estoque';
+        alert('Produto deletado com sucesso.');
+        window.location.href='/listagem';
       }else{
-        alert('Falha ao deletar o estoque.');
+        alert('Falha ao deletar o produto.');
       }
     }
   }
 
   useEffect(() => {
-    async function showEstoque(){
-      const response = await api.get("/api/estoques");
-      setEstoquesList(response.data);
+    async function showProdutos(){
+      const response = await api.get("/api/produtos");
+      setProdutosList(response.data);
     }
-    showEstoque();
+    showProdutos();
   }, [])
 
-  const [estoquesList, setEstoquesList] = useState([])
+  const [produtosList, setProdutosList] = useState([])
 
   return (
     <>
-    <h3>Estoques Registrados</h3>
     <TableContainer component={Paper}>
       <Table className={classes.table} size="small" aria-label="a dense table">
         <TableHead>
           <TableRow>
-            <TableCell align="right"><b>Cod</b></TableCell>
+            <TableCell align="right"><b>Cód Produto</b></TableCell>
+            <TableCell align="left"><b>Produto</b></TableCell>
+            <TableCell align="right"><b>Cód Estoque</b></TableCell>
             <TableCell align="left"><b>Estoque</b></TableCell>
-            <TableCell align="center"><b>Editar</b></TableCell>
+            <TableCell align="center"><b>Quantidade</b></TableCell>
             <TableCell align="center"><b>Deletar</b></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {estoquesList.map((estoque, key) => (
+          {produtosList.map((produto, key) => (
             <TableRow key={key}>
-              <TableCell align="right" style={{ width: "10%" }}>{estoque.codEstoque}</TableCell>
-              <TableCell align="left" style={{ width: "50%" }}>{estoque.nomeEstoque}</TableCell>
+              <TableCell align="right" style={{ width: "15%" }}>{produto.codProduto}</TableCell>
+              <TableCell align="left" style={{ width: "25%" }}>{produto.nomeProduto}</TableCell>
+              <TableCell align="right" style={{ width: "15%" }}>{produto.codsEstoque.codEstoque}</TableCell>
+              <TableCell align="left" style={{ width: "25%" }}>{produto.codsEstoque.nomeEstoque}</TableCell>
+              <TableCell align="center" style={{ width: "10%" }}>{produto.numItens}</TableCell>
               <TableCell align="center" style={{ width: "10%"}}> 
-                <IconButton className={classes.margin} href={'/estoques/alterar/'+estoque._id}>
-                <CreateIcon fontSize="small" /></IconButton>
-              </TableCell>
-              <TableCell align="center" style={{ width: "10%"}}> 
-                <IconButton aria-label="delete" className={classes.margin} onClick={() => deleteEstoque(estoque._id)}>
+                <IconButton aria-label="delete" className={classes.margin} onClick={() => deleteProduto(produto._id)}>
                 <DeleteIcon fontSize="small" /></IconButton>
               </TableCell>
             </TableRow>

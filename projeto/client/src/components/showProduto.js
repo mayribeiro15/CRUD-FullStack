@@ -52,8 +52,8 @@ export default function ShowProduto() {
           <TableRow>
             <TableCell align="right"><b>Cod</b></TableCell>
             <TableCell align="left"><b>Produto</b></TableCell>
-            <TableCell align="center"><b>Estoques</b></TableCell>
-            <TableCell align="center"><b>Itens</b></TableCell>
+            <TableCell align="center"><b>Nº Estoques</b></TableCell>
+            <TableCell align="center"><b>Total Itens</b></TableCell>
             <TableCell align="center"><b>Editar</b></TableCell>
             <TableCell align="center"><b>Deletar</b></TableCell>
           </TableRow>
@@ -62,15 +62,15 @@ export default function ShowProduto() {
           {produtosList.map((produto, key) => (
             <TableRow key={key}>
               <TableCell align="right" style={{ width: "10%" }}>{produto.codProduto}</TableCell>
-              <TableCell align="left" style={{ width: "50%" }}>{produto.nomeProduto}</TableCell>
-              <TableCell align="center" style={{ width: "10%" }}>{produto.numEstoques}</TableCell>
-              <TableCell align="center" style={{ width: "10%" }}>{produto.numItensTotal}</TableCell>
+              <TableCell align="left" style={{ width: "36%" }}>{produto.nomeProduto}</TableCell>
+              <TableCell align="center" style={{ width: "18%" }}>{produto.numEstoques}</TableCell>
+              <TableCell align="center" style={{ width: "18%" }}>{produto.numItens}</TableCell>
               <TableCell align="center" style={{ width: "10%"}}> 
-                <IconButton aria-label="delete" className={classes.margin} href={'/produtos/alterar/'+produto._id}>
+                <IconButton className={classes.margin} href={'/produtos/alterar/'+produto._id}>
                 <CreateIcon fontSize="small" /></IconButton>
               </TableCell>
               <TableCell align="center" style={{ width: "10%"}}> 
-                <IconButton aria-label="delete" className={classes.margin} onClick={() => deleteProduto(produto._id)}>
+                <IconButton className={classes.margin} onClick={() => deleteProduto(produto._id)}>
                 <DeleteIcon fontSize="small" /></IconButton>
               </TableCell>
             </TableRow>

@@ -1,15 +1,15 @@
 const mongoose = require('mongoose');
+const Estoque = require('../models/estoques.model');
 
-const DataSchema = new mongoose.Schema({
-    nomeProduto: String,
-    codProduto: Number,
-    numEstoques: Number,
-    numItensTotal: {type: Number, default:0},
-    codsEstoque: [Number],
-    numItens: [Number]
+const ProdutoSchema = new mongoose.Schema({
+    nomeProduto: {type: String, requires: true},
+    codProduto: {type: Number, required: true},
+    numEstoques: {type: Number, default:0},
+    codsEstoque: {type: mongoose.ObjectId, ref: Estoque},
+    numItens: {type: Number, default:0}
 },{
     timestamps: true
 })
 
-const produto = mongoose.model('Produto', DataSchema);
+const produto = mongoose.model('Produto', ProdutoSchema);
 module.exports = produto;

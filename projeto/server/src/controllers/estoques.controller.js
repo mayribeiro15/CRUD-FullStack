@@ -26,5 +26,11 @@ module.exports = {
         const { _id } = req.params;
         const estoque = await Estoque.findByIdAndDelete({_id});
         return res.json(estoque);
+    },
+    async update(req,res){
+        const {_id, nomeEstoque, codEstoque} = req.body;
+        const data = {nomeEstoque, codEstoque};
+        const estoque = await Estoque.findByIdAndUpdate({_id},data,{new:true});
+        res.json(estoque);
     }
 }

@@ -7,8 +7,8 @@ function Home() {
       <p>No menu ao lado é possível acessar as funcionalidades do Sistema.
       <br/>Na aba <b>Produtos</b> é possível adicionar, remover e editar produtos.
       <br/>Na aba <b>Estoque</b> é possível adicionar, remover e editar estoques.
-      <br/>Na aba <b>Listagem</b> é possível observar a relação completa de produtos, com opção de deleção,
-      <br/>filtro e classificação dos itens de acordo com o estoque e quantidade disponível.
+      <br/>Na aba <b>Listagem</b> é possível observar a relação completa de produtos, 
+      <br/>com estoque e quantidade disponível, com opção de deleção.
       </p>
     </div>
   );

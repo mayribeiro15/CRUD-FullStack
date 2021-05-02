@@ -11,7 +11,7 @@ module.exports = {
         let data = {};
         let produto = await Produto.findOne({codProduto});
         if(!produto){
-            data = {nomeProduto, codProduto, numEstoques, numItensTotal, codsEstoque, numItens};
+            data = {nomeProduto, codProduto, numEstoques, codsEstoque, numItens};
             produto = await Produto.create(data);
             return res.status(200).json(produto);
         }else{
@@ -20,7 +20,7 @@ module.exports = {
     },
     async info(req,res){
         const { _id } = req.params;
-        const produto = await Produto.findOne({_id});
+        const produto = await Produto.findOne({_id}).populate('codsEstoque');
         res.json(produto);
     },
     async delete(req,res){

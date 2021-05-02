@@ -23,7 +23,7 @@ export default function CreateProduto() {
   const classes = useStyles();
   
   async function createProduto(){
-    if(produto.nomeProduto===''||produto.codProduto===''){
+    if(produto.nomeProduto===' '||produto.codProduto===' '||produto.numEstoques===''||produto.codsEstoques===''){
       alert('Preencha todos os dados!');
     }else{
       const response = await api.post('/api/produtos',produto);
@@ -55,7 +55,8 @@ export default function CreateProduto() {
 
   return (
     <>
-    <h3>Cadastrar Novo Produto</h3>
+    <h3 style={{ marginBottom: "0.2ch" }}>Cadastrar Novo Produto</h3>
+    <p style={{ fontSize: 10, marginBottom: "5ch" }}>Todo produto deve ser cadastrado em ao menos um estoque.</p>
     <form className={classes.root} noValidate autoComplete="off">
       <TextField style={{ width: "10ch"}}  label="Código" id="standard-size-small" value={produto.codProduto} onChange={(event) => {
         setProduto({ ...produto, codProduto: event.target.value})

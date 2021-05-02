@@ -71,12 +71,12 @@ export default function UpdateProduto() {
             setProduto({ ...produto, nomeProduto: event.target.value})
         }} />
         
-        <TextField className={classes.textField} select style={{ width: "20ch"}}  label="NºEstoques" value={produto.numEstoques} onChange={(event) => {
+        <TextField className={classes.textField} select style={{ width: "20ch"}}  label="NºEstoques" defaultValue="1" value={produto.numEstoques} onChange={(event) => {
           setProduto({ ...produto, numEstoques: event.target.value})
         }}>
             <MenuItem value={1}>1</MenuItem>
         </TextField>
-        <TextField className={classes.textField} select style={{ width: "61ch"}}  label="Estoque" value={produto.codsEstoque} onChange={(event) => {
+        <TextField className={classes.textField} select style={{ width: "61ch"}}  label="Estoque" defaultValue=" " value={produto.codsEstoque} onChange={(event) => {
           setProduto({ ...produto, codsEstoque: event.target.value})
         }}>
             {estoquesList.map((estoque, key) => (
